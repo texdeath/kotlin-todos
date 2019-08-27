@@ -1,26 +1,23 @@
 package app
 
-// 基本的にJavaの記法
-// import react from 'react';
 
-import external.materialui.*
-import kotlinx.html.InputType
-import kotlinx.html.js.*
-
-import react.dom.div
-import react.dom.input
-import react.dom.button
-import react.dom.h3
-import react.dom.ul
-import react.dom.p
-import react.dom.li
-import react.ReactElement
 
 // パッケージをインポート
+// 基本的にJavaの記法
+// import react.* <-> import react from 'react';
 
 import org.w3c.dom.HTMLInputElement
+import react.dom.div
+import react.dom.h3
+import react.dom.p
 import react.*
 
+import external.materialui.AppBar
+import external.materialui.TextField
+import external.materialui.Button
+import external.materialui.MList
+import external.materialui.MListItem
+import external.materialui.MListItemText
 
 interface Props: RProps {
     var initialItems: List<String?>
@@ -85,9 +82,6 @@ class App(props: Props) : RComponent<Props, State>(props) {
                 for ((index, item) in state.items.withIndex()) {
                     MListItem {
                         key = index.toString()
-//                        attrs {
-//                            +item.toString()
-//                        }
                         MListItemText {
                             attrs {
                                 primary = p {
