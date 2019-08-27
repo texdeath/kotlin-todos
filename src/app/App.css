@@ -9,10 +9,11 @@ body {
   color: white;
 }
 
-.App-intro {
-  font-size: large;
+.App-item {
+  margin-top: 80px;
 }
 
-.App-ticker {
-  font-size: medium;
+.App-item-wrapper {
+  width: 480px;
+  margin: auto;
 }

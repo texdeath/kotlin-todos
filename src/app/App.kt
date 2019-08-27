@@ -3,13 +3,10 @@ package app
 // 基本的にJavaの記法
 // import react from 'react';
 
+import external.materialui.*
 import kotlinx.html.InputType
 import kotlinx.html.js.*
 
-import react.RComponent
-import react.RProps
-import react.RState
-import react.RBuilder
 import react.dom.div
 import react.dom.input
 import react.dom.button
@@ -17,13 +14,13 @@ import react.dom.h3
 import react.dom.ul
 import react.dom.p
 import react.dom.li
-import react.setState
+import react.ReactElement
 
 // パッケージをインポート
-import external.materialui.Button
-import external.materialui.TextField
 
 import org.w3c.dom.HTMLInputElement
+import react.*
+
 
 interface Props: RProps {
     var initialItems: List<String?>
@@ -42,7 +39,7 @@ class App(props: Props) : RComponent<Props, State>(props) {
     }
 
     override fun RBuilder.render() {
-        div {
+        AppBar {
             h3 {
                 +"Kotlin App"
             }
@@ -50,7 +47,7 @@ class App(props: Props) : RComponent<Props, State>(props) {
 
 
 
-        div {
+        div("App-item"){
             TextField {
                 // DOMの属性、値などはここに書いていく
                 attrs {
@@ -82,19 +79,27 @@ class App(props: Props) : RComponent<Props, State>(props) {
             }
         }
 
-        h3 {
-            ul {
+        div("App-item-wrapper"){
+            MList {
                 // withIndexでindexも一緒にマッピングする
                 for ((index, item) in state.items.withIndex()) {
-                    li {
+                    MListItem {
                         key = index.toString()
-                        p {
-                            +item.toString()
+//                        attrs {
+//                            +item.toString()
+//                        }
+                        MListItemText {
+                            attrs {
+                                primary = p {
+                                        +item.toString()
+                                }
+                            }
                         }
-                        button {
+
+                        Button {
                             +"削除"
                             attrs {
-                                onClickFunction = {
+                                onClick = {
                                     setState {
                                         // インデックスと異なるリストのみを残す（フィルタする）。
                                         items = items.filterIndexed { i, _ -> i != index }
